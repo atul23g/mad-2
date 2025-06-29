@@ -1,0 +1,89 @@
+INput from
+XML
+
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Text field 1 -->
+    <EditText
+        android:id="@+id/edtName"
+        android:hint="Name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <!-- Text field 2 -->
+    <EditText
+        android:id="@+id/edtUsn"
+        android:hint="USN"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <!-- Two radio buttons in one group -->
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RadioButton
+            android:id="@+id/radioMale"
+            android:text="Male"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <RadioButton
+            android:id="@+id/radioFemale"
+            android:text="Female"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </RadioGroup>
+
+    <!-- Submit button -->
+    <Button
+        android:id="@+id/btnSubmit"
+        android:text="Submit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+</android.support.v7.widget.LinearLayoutCompat>
+
+
+---------------------
+
+
+package com.example.simpleform
+
+import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
+import android.widget.*
+
+class MainActivity : AppCompatActivity() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        val nameEt      = findViewById<EditText>(R.id.edtName)
+        val usnEt       = findViewById<EditText>(R.id.edtUsn)
+        val radioGroup  = findViewById<RadioGroup>(R.id.radioGroup)
+        val submitBtn   = findViewById<Button>(R.id.btnSubmit)
+
+        submitBtn.setOnClickListener {
+            val name   = nameEt.text.toString()
+            val usn    = usnEt.text.toString()
+            val genderId = radioGroup.checkedRadioButtonId
+            val gender = if (genderId != -1)
+                findViewById<RadioButton>(genderId).text
+            else "Not chosen"
+
+            Toast.makeText(
+                this,
+                "Name: $name\nUSN: $usn\nGender: $gender",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
+    }
+}
