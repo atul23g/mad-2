@@ -1,0 +1,102 @@
+
+
+--------------------------------------------
+activity_main.xml
+---------------------------------------------
+
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="#E0F7FA">
+
+    <TextView
+        android:id="@+id/lifecycleLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Activity Lifecycle "
+        android:textSize="22sp"
+        android:textColor="#000000"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp" />
+
+    <Button
+        android:id="@+id/btnDummy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Click Me"
+        android:layout_centerInParent="true" />
+</RelativeLayout>
+
+
+=====================================================================
+MainActivity.kt
+=====================================================================
+
+import android.app.Activity
+import android.os.Bundle
+import android.util.Log
+import android.widget.Button
+import android.widget.Toast
+
+class MainActivity : Activity() {
+
+    private val tag = "MainActivity"
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        val msg = "onCreate method called"
+        Log.d(tag, msg)
+        Toast.makeText(applicationContext, msg, Toast.LENGTH_SHORT).show()
+
+        val button = findViewById<Button>(R.id.btnDummy)
+        button.setOnClickListener {
+            Toast.makeText(this, "Button Clicked!", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        val msg = "onStart method called"
+        Log.d(tag, msg)
+        Toast.makeText(applicationContext, msg, Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val msg = "onResume method called"
+        Log.d(tag, msg)
+        Toast.makeText(applicationContext, msg, Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        val msg = "onPause method called"
+        Log.d(tag, msg)
+        Toast.makeText(applicationContext, msg, Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        val msg = "onStop method called"
+        Log.d(tag, msg)
+        Toast.makeText(applicationContext, msg, Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+        val msg = "onRestart method called"
+        Log.d(tag, msg)
+        Toast.makeText(applicationContext, msg, Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        val msg = "onDestroy method called"
+        Log.d(tag, msg)
+        Toast.makeText(applicationContext, msg, Toast.LENGTH_SHORT).show()
+    }
+}
